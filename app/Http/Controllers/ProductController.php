@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
 
@@ -54,6 +55,33 @@ class ProductController extends Controller
         } else {
             return response("No image in request", 500);
         }
+
+    }
+
+    public function view()
+    {
+        $allProducts = [];
+
+        foreach (Product::All() as $product) {
+            $allProducts[] = $product;
+        }
+        return response()->json($allProducts);
+    }
+
+    public function delete($id)
+    {
+        if (Gate::allows('delete-product')) {
+            //return response()->json(Product::where('id', $id)->first());
+            return response()->json(Product::findOrFail($id));
+        } else {
+            abort(403);
+
+        }
+    }
+
+    public function update($id)
+    {
+        return response()->json(Product::findOrFail($id));
 
     }
 

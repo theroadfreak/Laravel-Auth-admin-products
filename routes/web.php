@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+/*Route::get('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken('admin');
+
+    return ['token' => $token->plainTextToken];
+});*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +35,4 @@ Route::get('/admin', function () {
 })->middleware(['auth', 'isAdmin'])->name('adminDashboard');
 
 require __DIR__.'/auth.php';
+
