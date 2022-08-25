@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('product-name');
+            $table->string('product_name');
 
-            $table->string('picture-src');
+            $table->string('picture_src');
             $table->string('thumb');
             $table->unsignedInteger('width');
             $table->unsignedInteger('height');

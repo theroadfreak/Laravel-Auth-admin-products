@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// admin token "1|Kkw4uRVpyFdtbAL7i5tLRWgSNPvcobnkjr0KckVs"
+// admin token "1|tIw7Lg7y6ZkVIJmybENaNDC1p2S8of9V1l3Rq3BB"
 
 Route::get('/seeProducts', [ProductController::class, 'view']);
 
@@ -29,8 +29,10 @@ Route::group(['middleware' => ['auth.basic']],function (){
     Route::post('/storeProduct', [ProductController::class, 'store']);
     Route::delete('deleteProduct/{id}', [ProductController::class, 'delete']); //Gate auth
 });
-Route::get('updateProduct/{id}', [ProductController::class, 'update'])->middleware('auth:sanctum'); //sanctum apiToken
 
+Route::post('updateProduct/{id}', [ProductController::class, 'update'])->middleware('auth:sanctum'); //sanctum apiToken
 
-Route::post('/storeContact', [ContactController::class, 'store'])->middleware('auth');;
+Route::get('/seeContacts', [ContactController::class, 'view']);
+Route::post('/storeContact', [ContactController::class, 'store'])->middleware('auth.basic');
+Route::delete('/deleteContact/{id}', [ContactController::class, 'delete'])->middleware('auth:sanctum');
 

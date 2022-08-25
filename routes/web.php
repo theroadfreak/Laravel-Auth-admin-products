@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-/*Route::get('/tokens/create', function (Request $request) {
+/*
+Route::get('/tokens/create', function (Request $request) {
     $token = $request->user()->createToken('admin');
 
     return ['token' => $token->plainTextToken];
